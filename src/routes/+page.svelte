@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Login from '../lib/components/Login.svelte';
 	import { useChat } from 'ai/svelte';
 
 	let testMessages = [
@@ -22,6 +23,8 @@
 	});
 </script>
 
+<Login />
+
 <main class="grid grid-cols-8">
 	<ul
 		class="col-span-8 md:col-start-2 md:col-span-5 mx-4 h-[82vh] md:h-[84vh] bg-primary-obscure rounded-xl mb-4 mt-8 max-h-[84vh] overflow-y-auto"
@@ -40,7 +43,7 @@
 	>
 		<textarea
 			bind:value={testInput}
-			class="col-span-4 md:col-span-5 p-2 rounded-lg bg-slate-900 border-2 border-primary outline-none shadow-lg overflow-x-auto text-text"
+			class="col-span-4 md:col-span-5 p-2 rounded-lg bg-background border-2 border-primary outline-none shadow-lg overflow-x-auto text-text"
 		/>
 		<button
 			type="submit"
@@ -52,7 +55,7 @@
 
 <style lang="postcss">
 	:global(html) {
-		background: #ffffff;
+		background: #f5f5ff;
 		font-family: 'Albert Sans Variable', sans-serif;
 	}
 </style>
