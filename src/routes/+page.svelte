@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Login from '../lib/components/Login.svelte';
+	import Login from '$lib/components/Login.svelte';
+	import { auth } from '$lib/stores';
 	import { useChat } from 'ai/svelte';
 
 	let testMessages = [
@@ -21,11 +22,22 @@
 	const { messages, handleSubmit, input } = useChat({
 		api: '/chat'
 	});
+
+	$: loggedIn = $auth.token !== null && $auth.user != null;
 </script>
 
-<Login />
+{#if !loggedIn}
+	<Login />
+{/if}
 
 <main class="grid grid-cols-8">
+	<button
+		on:click={() => {
+			auth.logout();
+		}}
+		class="col-span-1 h-10 rounded-xl m-6 font-semibold text-primary border-2 border-primary"
+		>logout</button
+	>
 	<ul
 		class="col-span-8 md:col-start-2 md:col-span-5 mx-4 h-[82vh] md:h-[84vh] bg-primary-obscure rounded-xl mb-4 mt-8 max-h-[84vh] overflow-y-auto"
 	>
